@@ -1,7 +1,7 @@
 {
   "name": "@osjs/client",
   "version": "3.10.0",
-  "description": "OS.js client",
+  "description": "OS.js client Pranav",
   "main": "dist/main.js",
   "style": "dist/main.css",
   "typings": "index.d.ts",
@@ -25,7 +25,7 @@
     "watch": "webpack --watch",
     "stylelint": "stylelint index.scss src/**/*.scss",
     "prepublishOnly": "npm run test && rm ./dist/* && NODE_ENV=production npm run build",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -40,8 +40,10 @@
     "css-mediaquery": "^0.1.2",
     "dateformat": "^3.0.3",
     "deepmerge": "^4.2.2",
-    "hyperapp": "^1.2.10",
+    "hyperapp": "^2.0.22",
     "js-cookie": "^2.2.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "simplejsonconf": "^2.0.7"
   },
   "author": "Anders Evenrud <andersevenrud@gmail.com>",
@@ -51,10 +53,12 @@
   },
   "homepage": "https://github.com/os-js/osjs-client#readme",
   "devDependencies": {
+    "@babel/preset-react": "^7.24.7",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@osjs/dev-meta": "^2.2.0",
-    "husky": "^8.0.0"
+    "@osjs/eslint-config": "^2.0.1",
+    "husky": "^9.1.4"
   },
   "eslintConfig": {
     "env": {
