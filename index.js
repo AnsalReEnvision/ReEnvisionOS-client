@@ -3,6 +3,7 @@
  *
  * Copyright (c) Anders Evenrud <andersevenrud@gmail.com>
  * All rights reserved.
+ * Updated to React by Pranav Joseph
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -28,33 +29,86 @@
  * @license Simplified BSD License
  * @preserve Copyright (c) Anders Evenrud <andersevenrud@gmail.com>
  */
-import './index.scss';
 
-export {default as Core} from './src/core';
-export {default as Window} from './src/window';
-export {default as Desktop} from './src/desktop';
-export {default as Application} from './src/application';
-export {default as Notification} from './src/notification';
-export {default as Notifications} from './src/notifications';
-export {default as WindowBehavior} from './src/window-behavior';
-export {default as Auth} from './src/auth';
-export {default as Login} from './src/login';
-export {default as Websocket} from './src/websocket';
-export {default as CoreServiceProvider} from './src/providers/core';
-export {default as DesktopServiceProvider} from './src/providers/desktop';
-export {default as NotificationServiceProvider} from './src/providers/notifications';
-export {default as VFSServiceProvider} from './src/providers/vfs';
-export {default as AuthServiceProvider} from './src/providers/auth';
-export {default as SettingsServiceProvider} from './src/providers/settings';
-export {default as logger} from './src/logger';
-export {default as Splash} from './src/splash';
-export {default as Settings} from './src/settings';
-export {default as Tray} from './src/tray';
-export {default as Search} from './src/search';
-export {default as Packages} from './src/packages';
-export {default as Filesystem} from './src/filesystem';
-export {default as Clipboard} from './src/clipboard';
-export {default as Middleware} from './src/middleware';
-export {BasicApplication} from './src/basic-application';
-export {defaultConfiguration as configuration} from './src/config';
-export {default as icon} from './src/styles/logo-blue-32x32.png';
+import React from "react";
+import "./index.scss";
+
+// Core components and services
+import Core from "./src/core";
+import Window from "./src/window";
+import Desktop from "./src/desktop";
+import Application from "./src/application";
+import Notification from "./src/notification";
+import Notifications from "./src/notifications";
+import WindowBehavior from "./src/window-behavior";
+import Auth from "./src/auth";
+import Login from "./src/login";
+import Websocket from "./src/websocket";
+
+// Service providers
+import CoreServiceProvider from "./src/providers/core";
+import DesktopServiceProvider from "./src/providers/desktop";
+import NotificationServiceProvider from "./src/providers/notifications";
+import VFSServiceProvider from "./src/providers/vfs";
+import AuthServiceProvider from "./src/providers/auth";
+import SettingsServiceProvider from "./src/providers/settings";
+
+// Utilities and helpers
+import logger from "./src/logger";
+import Splash from "./src/splash";
+import Settings from "./src/settings";
+import Tray from "./src/tray";
+import Search from "./src/search";
+import Packages from "./src/packages";
+import Filesystem from "./src/filesystem";
+import Clipboard from "./src/clipboard";
+import Middleware from "./src/middleware";
+import { BasicApplication } from "./src/basic-application";
+import { defaultConfiguration as configuration } from "./src/config";
+import icon from "./src/styles/logo-blue-32x32.png";
+
+// React components (assuming these modules have been converted to React components)
+const WindowComponent = React.memo(Window);
+const DesktopComponent = React.memo(Desktop);
+const NotificationComponent = React.memo(Notification);
+const LoginComponent = React.memo(Login);
+const SplashComponent = React.memo(Splash);
+const TrayComponent = React.memo(Tray);
+const SearchComponent = React.memo(Search);
+
+// Custom hooks (assuming these have been converted to React hooks)
+const useAuth = () => React.useContext(AuthContext);
+const useSettings = () => React.useContext(SettingsContext);
+const useFilesystem = () => React.useContext(FilesystemContext);
+const useClipboard = () => React.useContext(ClipboardContext);
+
+export {
+  Core,
+  WindowComponent as Window,
+  DesktopComponent as Desktop,
+  Application,
+  NotificationComponent as Notification,
+  Notifications,
+  WindowBehavior,
+  useAuth,
+  LoginComponent as Login,
+  Websocket,
+  CoreServiceProvider,
+  DesktopServiceProvider,
+  NotificationServiceProvider,
+  VFSServiceProvider,
+  AuthServiceProvider,
+  SettingsServiceProvider,
+  logger,
+  SplashComponent as Splash,
+  useSettings,
+  TrayComponent as Tray,
+  SearchComponent as Search,
+  Packages,
+  useFilesystem,
+  useClipboard,
+  Middleware,
+  BasicApplication,
+  configuration,
+  icon,
+};
