@@ -1,44 +1,44 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-const mode = process.env.NODE_ENV || 'development';
-const minimize = mode === 'production';
+const mode = process.env.NODE_ENV || "development";
+const minimize = mode === "production";
 const plugins = [];
 
-if (mode === 'production') {
-  plugins.push(new OptimizeCSSAssetsPlugin({
-    cssProcessorOptions: {
-      discardComments: true,
-      map: {
-        inline: false
-      }
-    },
-  }));
+if (mode === "production") {
+  plugins.push(
+    new OptimizeCSSAssetsPlugin({
+      cssProcessorOptions: {
+        discardComments: true,
+        map: {
+          inline: false,
+        },
+      },
+    })
+  );
 }
 
 module.exports = {
   mode,
-  devtool: 'source-map',
-  entry: [
-    path.resolve(__dirname, 'index.js'),
-  ],
+  devtool: "source-map",
+  entry: [path.resolve(__dirname, "index.js")],
   output: {
-    library: 'osjsClient',
-    libraryTarget: 'umd',
+    library: "osjsClient",
+    libraryTarget: "umd",
     umdNamedDefine: true,
-    sourceMapFilename: '[file].map',
-    filename: '[name].js'
+    sourceMapFilename: "[file].map",
+    filename: "[name].js",
   },
   optimization: {
     minimize,
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css'
+      filename: "[name].css",
+      chunkFilename: "[id].css",
     }),
-    ...plugins
+    ...plugins,
   ],
   module: {
     rules: [
@@ -47,9 +47,9 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         use: [
           {
-            loader: 'file-loader'
-          }
-        ]
+            loader: "file-loader",
+          },
+        ],
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -57,26 +57,32 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
-              sourceMap: true
-            }
-          }
-        ]
+              sourceMap: true,
+            },
+          },
+        ],
       },
       {
-        test: /\.js$/,
+        test: /\.js$|\.jsx$/,
         exclude: /(node_modules|bower_components)\/(?!@osjs)/,
         use: {
-          loader: 'babel-loader'
-        }
-      }
-    ]
-  }
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
 };
